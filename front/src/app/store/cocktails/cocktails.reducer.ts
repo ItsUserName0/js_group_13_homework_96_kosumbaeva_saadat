@@ -5,7 +5,12 @@ import {
   fetchCocktailRequest,
   fetchCocktailsFailure,
   fetchCocktailsRequest,
-  fetchCocktailsSuccess, fetchCocktailSuccess
+  fetchCocktailsSuccess,
+  fetchCocktailSuccess,
+  publishCocktailFailure,
+  publishCocktailRequest,
+  publishCocktailSuccess, removeCocktailFailure,
+  removeCocktailRequest, removeCocktailSuccess
 } from './cocktails.actions';
 
 const initialState: CocktailsState = {
@@ -13,6 +18,8 @@ const initialState: CocktailsState = {
   fetchLoading: false,
   item: null,
   itemFetchLoading: false,
+  removeLoading: false,
+  publishLoading: false,
 };
 
 export const cocktailsReducer = createReducer(
@@ -23,4 +30,10 @@ export const cocktailsReducer = createReducer(
   on(fetchCocktailRequest, state => ({...state, itemFetchLoading: true})),
   on(fetchCocktailSuccess, (state, {item}) => ({...state, itemFetchLoading: false, item})),
   on(fetchCocktailFailure, state => ({...state, itemFetchLoading: false})),
+  on(publishCocktailRequest, state => ({...state, publishLoading: true})),
+  on(publishCocktailSuccess, state => ({...state, publishLoading: false})),
+  on(publishCocktailFailure, state => ({...state, publishLoading: false})),
+  on(removeCocktailRequest, state => ({...state, removeLoading: true})),
+  on(removeCocktailSuccess, state => ({...state, removeLoading: false})),
+  on(removeCocktailFailure, state => ({...state, removeLoading: false})),
 );

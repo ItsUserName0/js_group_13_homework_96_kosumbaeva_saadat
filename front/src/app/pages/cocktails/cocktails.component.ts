@@ -32,10 +32,10 @@ export class CocktailsComponent implements OnInit, OnDestroy {
       this.userData = user;
     });
     this.path = <string>this.route.snapshot.routeConfig?.path;
-    if (this.path === 'my_cocktails') {
-      this.store.dispatch(fetchCocktailsRequest({id: this.userData?._id}));
+    if (this.path === 'my_cocktails' && this.userData?._id) {
+      this.store.dispatch(fetchCocktailsRequest({id: this.userData._id}));
     } else {
-      this.store.dispatch(fetchCocktailsRequest({id: undefined}));
+      this.store.dispatch(fetchCocktailsRequest({id: null}));
     }
   }
 

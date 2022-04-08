@@ -15,6 +15,8 @@ export type CocktailsState = {
   itemFetchLoading: boolean,
   items: Cocktail[],
   fetchLoading: boolean,
+  removeLoading: boolean,
+  publishLoading: boolean,
 }
 
 export type AppState = {

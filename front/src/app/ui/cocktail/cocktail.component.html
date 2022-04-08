@@ -12,13 +12,13 @@
 
   <div *appHasRoles="['admin']">
     <button mat-raised-button color="warn" (click)="removeCocktail()">
-      <mat-spinner *ngIf="false" diameter="30"></mat-spinner>
-      <span *ngIf="true">Delete</span>
+      <mat-spinner *ngIf="(removeLoading | async) && cocktail._id === toBeDeletedCocktail" diameter="30"></mat-spinner>
+      <span *ngIf="!(removeLoading | async) && cocktail._id !== toBeDeletedCocktail">Delete</span>
     </button>&nbsp;
 
-    <button mat-raised-button color="primary" (click)="publishCocktail()" *ngIf="true">
-      <mat-spinner diameter="30" *ngIf="false"></mat-spinner>
-      <span *ngIf="true">Publish</span>
+    <button mat-raised-button color="primary" (click)="publishCocktail()" *ngIf="!cocktail.is_published">
+      <mat-spinner diameter="30" *ngIf="(publishLoading | async) && cocktail._id === toBePublishCocktail"></mat-spinner>
+      <span *ngIf="!(publishLoading | async) && cocktail._id !== toBePublishCocktail">Publish</span>
     </button>
   </div>
 </mat-card>

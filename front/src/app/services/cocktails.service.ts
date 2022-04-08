@@ -11,7 +11,7 @@ export class CocktailsService {
   constructor(private http: HttpClient) {
   }
 
-  fetchCocktails(id?: string) {
+  fetchCocktails(id: null | string) {
     const url = id ? `/cocktails?user=${id}` : '/cocktails';
     return this.http.get<Cocktail[]>(environment.apiUrl + url);
   }
