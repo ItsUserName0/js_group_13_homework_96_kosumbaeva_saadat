@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cocktail } from '../../models/cocktail.model';
 
 @Component({
   selector: 'app-cocktail',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cocktail.component.sass']
 })
 export class CocktailComponent implements OnInit {
+  @Input() cocktail!: Cocktail;
 
   constructor() { }
 

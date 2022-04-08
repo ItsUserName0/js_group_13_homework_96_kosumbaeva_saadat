@@ -5,7 +5,7 @@ import { environment as env } from '../../environments/environment';
   name: 'image',
 })
 export class ImagePipe implements PipeTransform {
-  transform(value: string | undefined): string {
+  transform(value: string | undefined | null): string {
     if (value) {
       return env.apiUrl + '/' + value;
     }

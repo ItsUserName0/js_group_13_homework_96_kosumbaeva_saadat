@@ -1,12 +1,12 @@
 <mat-card class="card">
   <a routerLink="/cocktails/id">
     <mat-card-content fxLayout="column">
-      <div class="unpublished" *ngIf="true">
+      <div class="unpublished" *ngIf="!cocktail.is_published">
         <span class="unpublished-text">Unpublished</span>
       </div>
-      <img [src]="'https://static.onecms.io/wp-content/uploads/sites/43/2019/03/541915820Earl20Grey20Cocktail.jpg'"
-           [alt]=""/>
-      <mat-card-title>title</mat-card-title>
+      <img [src]="cocktail.image | image"
+           [alt]="cocktail.title"/>
+      <mat-card-title>{{ cocktail.title }}</mat-card-title>
     </mat-card-content>
   </a>
 

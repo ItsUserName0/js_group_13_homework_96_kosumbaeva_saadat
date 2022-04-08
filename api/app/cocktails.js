@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Cocktail = require('../models/Cocktail');
+const User = require('../models/User');
 const {cocktails} = require('../multer');
 const roles = require("../middleware/roles");
 const auth = require('../middleware/auth');
@@ -11,6 +12,15 @@ const router = express.Router();
 router.get('/', roles, async (req, res, next) => {
   try {
     let cocktails;
+
+    if (req.user && req.query.user) {
+      const user = await User.findOne({_id: req.query.user});
+
+      if (user.token === req.user.token) {
+        cocktails = await Cocktail.find({user: req.user._id}, null, {sort: {'_id': -1}});
+        return res.send(cocktails);
+      }
+    }
 
     if (req.user && req.user.role === 'admin') {
       cocktails = await Cocktail.find({}, null, {sort: {'_id': -1}});

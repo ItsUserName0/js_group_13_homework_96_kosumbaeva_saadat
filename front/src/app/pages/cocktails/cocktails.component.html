@@ -1,7 +1,7 @@
-<div fxLayout="row wrap" fxLayoutGap="16px">
-  <app-cocktail></app-cocktail>
-  <app-cocktail></app-cocktail>
-  <app-cocktail></app-cocktail>
-  <app-cocktail></app-cocktail>
-  <app-cocktail></app-cocktail>
-</div>
+<mat-spinner *ngIf="loading | async; else cocktailsArea"></mat-spinner>
+
+<ng-template #cocktailsArea>
+  <div fxLayout="row wrap" fxLayoutGap="16px">
+    <app-cocktail *ngFor="let c of (cocktails | async)" [cocktail]="c"></app-cocktail>
+  </div>
+</ng-template>
