@@ -5,7 +5,6 @@ const request = require('request');
 const {nanoid} = require('nanoid');
 const fs = require('fs');
 const User = require('../models/User');
-const auth = require('../middleware/auth');
 const config = require('../config');
 const {avatars} = require('../multer');
 
@@ -146,14 +145,6 @@ router.post('/facebookLogin', async (req, res, next) => {
     }
   }
 );
-
-router.get('/secret', auth, async (req, res, next) => {
-  try {
-    return res.send({message: 'Hello, ' + req.user.displayName});
-  } catch (e) {
-    return next(e);
-  }
-});
 
 router.delete('/sessions', async (req, res, next) => {
   try {

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <div class="container toolbar" fxLayout="row" fxLayoutAlign="space-between center">
-    <a routerLink="/">Logo</a>
+    <a routerLink="/">Cocktail builder</a>
     <nav *appUserType="'user'; else anonMenu" fxLayout="row" fxLayoutAlign="space-between center">
       <button mat-button [matMenuTriggerFor]="menu">
         <img [src]="userData?.avatar | image" [alt]="userData?.displayName">
