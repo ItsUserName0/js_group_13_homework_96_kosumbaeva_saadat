@@ -1,5 +1,5 @@
 import { LoginError, RegisterError, User } from '../models/user.model';
-import { Cocktail } from '../models/cocktail.model';
+import { Cocktail, CreateError } from '../models/cocktail.model';
 
 export type UsersState = {
   user: null | User,
@@ -15,6 +15,8 @@ export type CocktailsState = {
   itemFetchLoading: boolean,
   items: Cocktail[],
   fetchLoading: boolean,
+  createLoading: boolean,
+  createError: null | CreateError,
   removeLoading: boolean,
   publishLoading: boolean,
 }

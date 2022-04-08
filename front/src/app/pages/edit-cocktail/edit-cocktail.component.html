@@ -2,6 +2,8 @@
 
 <mat-card>
   <mat-card-content>
+    <p *ngIf="errMsg" style="color: red">{{ errMsg }}</p>
+
     <form [formGroup]="cocktailForm" (ngSubmit)="createCocktail()">
       <div fxLayout="column">
         <mat-form-field appearance="outline">
@@ -43,9 +45,9 @@
         </mat-form-field>
 
         <div fxFlex="25%">
-          <button type="submit" mat-raised-button color="primary">
-            <mat-spinner *ngIf="false" diameter="25"></mat-spinner>
-            <span *ngIf="true">Create cocktail</span>
+          <button type="submit" mat-raised-button color="primary" [disabled]="cocktailForm.invalid || (loading | async)">
+            <mat-spinner *ngIf="(loading | async)" diameter="25"></mat-spinner>
+            <span *ngIf="!(loading | async)">Create cocktail</span>
           </button>
         </div>
       </div>

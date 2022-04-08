@@ -20,3 +20,13 @@ export interface CocktailData {
   recipe: string,
   ingredients: [Ingredients],
 }
+
+export interface FieldError {
+  message: string,
+}
+
+export interface CreateError {
+  errors: {
+    title: FieldError,
+  },
+}

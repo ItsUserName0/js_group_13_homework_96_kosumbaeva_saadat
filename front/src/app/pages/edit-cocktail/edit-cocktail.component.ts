@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppState } from '../../store/types';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { CreateError } from '../../models/cocktail.model';
+import { createCocktailRequest } from '../../store/cocktails/cocktails.actions';
 
 @Component({
   selector: 'app-edit-cocktail',
@@ -8,8 +13,14 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditCocktailComponent implements OnInit {
   cocktailForm!: FormGroup;
+  loading: Observable<boolean>;
+  error: Observable<null | CreateError>;
+  errSub!: Subscription;
+  errMsg = '';
 
-  constructor() {
+  constructor(private store: Store<AppState>) {
+    this.loading = store.select(state => state.cocktails.createLoading);
+    this.error = store.select(state => state.cocktails.createError);
   }
 
   ngOnInit(): void {
@@ -19,10 +30,19 @@ export class EditCocktailComponent implements OnInit {
       recipe: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
     });
+
+    this.errSub = this.error.subscribe(error => {
+      if (error) {
+        this.errMsg = error.errors.title.message;
+      } else {
+        this.errMsg = '';
+      }
+    });
   }
 
   createCocktail() {
-
+    const cocktailData = this.cocktailForm.value;
+    this.store.dispatch(createCocktailRequest({cocktailData}));
   }
 
   fieldHasError(fieldName: string, errorType: string, index?: number) {

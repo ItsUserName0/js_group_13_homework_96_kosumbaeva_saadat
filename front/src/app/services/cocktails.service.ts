@@ -25,10 +25,11 @@ export class CocktailsService {
 
     Object.keys(cocktailData).forEach(key => {
       if (cocktailData[key] !== null) {
+        let data = cocktailData[key];
         if (key === 'ingredients') {
-          JSON.stringify(cocktailData[key]);
+          data = JSON.stringify(cocktailData[key]);
         }
-        formData.append(key, cocktailData[key]);
+        formData.append(key, data);
       }
     });
 

@@ -3,6 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CocktailsService } from '../../services/cocktails.service';
 import { HelpersService } from '../../services/helpers.service';
 import {
+  createCocktailFailure,
+  createCocktailRequest, createCocktailSuccess,
   fetchCocktailFailure,
   fetchCocktailRequest,
   fetchCocktailsFailure,
@@ -17,6 +19,7 @@ import {
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../types';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CocktailsEffects {
@@ -25,7 +28,9 @@ export class CocktailsEffects {
               private cocktailsService: CocktailsService,
               private helpers: HelpersService,
               private store: Store<AppState>,
-              ) {}
+              private router: Router,
+  ) {
+  }
 
   fetchCocktails = createEffect(() => this.actions.pipe(
     ofType(fetchCocktailsRequest),
@@ -40,6 +45,18 @@ export class CocktailsEffects {
     mergeMap(({id}) => this.cocktailsService.fetchCocktail(id).pipe(
       map(item => fetchCocktailSuccess({item})),
       this.helpers.catchServerError(fetchCocktailFailure),
+    )),
+  ));
+
+  createCocktail = createEffect(() => this.actions.pipe(
+    ofType(createCocktailRequest),
+    mergeMap(({cocktailData}) => this.cocktailsService.createCocktail(cocktailData).pipe(
+      map(() => createCocktailSuccess()),
+      tap(() => {
+        this.helpers.openSnackBar('Your cocktail is under review by the moderator');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(createCocktailFailure),
     )),
   ));
 
