@@ -33,7 +33,9 @@ const createMulter = dirName => {
 };
 
 const avatars = createMulter('avatars');
+const cocktails = createMulter('cocktails');
 
 module.exports = {
   avatars,
+  cocktails,
 };

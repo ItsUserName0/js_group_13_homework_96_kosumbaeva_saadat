@@ -4,8 +4,8 @@ const axios = require('axios');
 const request = require('request');
 const {nanoid} = require('nanoid');
 const fs = require('fs');
-const User = require('../models/User');
 const config = require('../config');
+const User = require('../models/User');
 const {avatars} = require('../multer');
 
 const router = express.Router();
