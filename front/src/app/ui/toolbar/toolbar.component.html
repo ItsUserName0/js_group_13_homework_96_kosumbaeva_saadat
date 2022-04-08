@@ -2,6 +2,8 @@
   <div class="container toolbar" fxLayout="row" fxLayoutAlign="space-between center">
     <a routerLink="/">Cocktail builder</a>
     <nav *appUserType="'user'; else anonMenu" fxLayout="row" fxLayoutAlign="space-between center">
+      <a routerLink="/cocktails/create/new" mat-button>Add</a>
+      <a routerLink="/my_cocktails" mat-button>My Cocktails</a>
       <button mat-button [matMenuTriggerFor]="menu">
         <img [src]="userData?.avatar | image" [alt]="userData?.displayName">
       </button>

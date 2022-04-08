@@ -1,0 +1,25 @@
+<mat-card class="card">
+  <a routerLink="/cocktails/id">
+    <mat-card-content fxLayout="column">
+      <div class="unpublished" *ngIf="true">
+        <span class="unpublished-text">Unpublished</span>
+      </div>
+      <img [src]="'https://static.onecms.io/wp-content/uploads/sites/43/2019/03/541915820Earl20Grey20Cocktail.jpg'"
+           [alt]=""/>
+      <mat-card-title>title</mat-card-title>
+    </mat-card-content>
+  </a>
+
+  <div *appHasRoles="['admin']">
+    <button mat-raised-button color="warn" (click)="removeCocktail()">
+      <mat-spinner *ngIf="false" diameter="30"></mat-spinner>
+      <span *ngIf="true">Delete</span>
+    </button>&nbsp;
+
+    <button mat-raised-button color="primary" (click)="publishCocktail()" *ngIf="true">
+      <mat-spinner diameter="30" *ngIf="false"></mat-spinner>
+      <span *ngIf="true">Publish</span>
+    </button>
+  </div>
+</mat-card>
+

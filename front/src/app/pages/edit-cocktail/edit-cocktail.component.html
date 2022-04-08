@@ -1,0 +1,54 @@
+<h1>Add new cocktail</h1>
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="cocktailForm" (ngSubmit)="createCocktail()">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Name:</mat-label>
+          <input type="text" formControlName="title" matInput>
+          <mat-error *ngIf="fieldHasError('title', 'required')">Enter cocktail name!</mat-error>
+        </mat-form-field>
+
+        <div formArrayName="ingredients">
+          <div style="margin-bottom: 16px">
+            <label>Ingredients:</label>&nbsp;
+            <button type="button" mat-raised-button (click)="addIng()">Add ingredient</button>
+          </div>
+          <div *ngFor="let _ of getIngControls(); let i = index">
+            <div [formGroupName]="i">
+              <mat-form-field appearance="outline">
+                <input type="text" formControlName="ingTitle" placeholder="Ingredient name" matInput/>
+                <mat-error *ngIf="fieldHasError('ingTitle', 'required', i)">Enter ingredient title!</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <input type="text" formControlName="ingAmount" placeholder="Name" matInput/>
+                <mat-error *ngIf="fieldHasError('ingAmount', 'required', i)">Enter ingredient amount!</mat-error>
+              </mat-form-field>
+              <button type="button" mat-raised-button color="warn" (click)="onIngRemove(i)">Delete
+                ingredient {{ i + 1 }}</button>
+            </div>
+          </div>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Recipe:</mat-label>
+          <textarea formControlName="recipe" matInput></textarea>
+          <mat-error *ngIf="fieldHasError('recipe', 'required')">Enter recipe!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Image</mat-label>
+          <app-file-input formControlName="image"></app-file-input>
+        </mat-form-field>
+
+        <div fxFlex="25%">
+          <button type="submit" mat-raised-button color="primary">
+            <mat-spinner *ngIf="false" diameter="25"></mat-spinner>
+            <span *ngIf="true">Create cocktail</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

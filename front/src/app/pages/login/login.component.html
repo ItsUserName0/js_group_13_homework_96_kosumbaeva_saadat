@@ -27,7 +27,7 @@
             color="primary"
             [disabled]="f.invalid || (loading | async)"
             style="margin-bottom: 16px">
-      <mat-spinner *ngIf="loading | async"></mat-spinner>
+      <mat-spinner *ngIf="loading | async" diameter="25"></mat-spinner>
       <span *ngIf="!(loading | async)">SIGN IN</span>
     </button>
 

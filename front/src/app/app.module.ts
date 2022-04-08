@@ -9,7 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CenteredCardComponent } from './ui/centered-card/centered-card.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +28,10 @@ import { environment } from '../environments/environment';
 import { AuthInterceptor } from './auth.interceptor';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppStoreModule } from './store/app-store.module';
+import { CocktailsComponent } from './pages/cocktails/cocktails.component';
+import { EditCocktailComponent } from './pages/edit-cocktail/edit-cocktail.component';
+import { CocktailDetailsComponent } from './pages/cocktail-details/cocktail-details.component';
+import { CocktailComponent } from './ui/cocktail/cocktail.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -52,6 +56,10 @@ const socialConfig: SocialAuthServiceConfig = {
     ImagePipe,
     UserTypeDirective,
     HasRolesDirective,
+    CocktailsComponent,
+    EditCocktailComponent,
+    CocktailDetailsComponent,
+    CocktailComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +79,7 @@ const socialConfig: SocialAuthServiceConfig = {
     SocialLoginModule,
     MatProgressSpinnerModule,
     AppStoreModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
