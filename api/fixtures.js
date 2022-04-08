@@ -46,7 +46,7 @@ const run = async () => {
       image: 'fixtures/cocktail2.jpeg',
       recipe: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor dolorum error nemo quos ratione recusandae reprehenderit tenetur. Molestias, temporibus?onsectetur adipisicing elit. Consectetur dolor dolorum error nemo quos ratione recusandae reprehenderit tenetur. Molestias, temporibus?',
       is_published: true,
-      ingredients: [{ingTitle: 'Ing1', ingAmount: 'Amount1'}, {ingTitle: 'Ing2', ingAmount: 'Amount2'}],
+      ingredients: [{ingTitle: 'Ing1', ingAmount: 'Amount1'}, {ingTitle: 'Ing2', ingAmount: 'Amount2'}, {ingTitle: 'Ing3', ingAmount: 'Amount3'}],
     },{
       user: Admin,
       title: 'Cocktail3',

@@ -11,6 +11,8 @@ export type UsersState = {
 };
 
 export type CocktailsState = {
+  item: null | Cocktail,
+  itemFetchLoading: boolean,
   items: Cocktail[],
   fetchLoading: boolean,
 }

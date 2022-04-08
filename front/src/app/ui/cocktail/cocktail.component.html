@@ -1,5 +1,5 @@
 <mat-card class="card">
-  <a routerLink="/cocktails/id">
+  <a [routerLink]="['/cocktails', cocktail._id]">
     <mat-card-content fxLayout="column">
       <div class="unpublished" *ngIf="!cocktail.is_published">
         <span class="unpublished-text">Unpublished</span>

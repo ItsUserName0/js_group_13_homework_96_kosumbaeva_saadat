@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CocktailsService } from '../../services/cocktails.service';
 import { HelpersService } from '../../services/helpers.service';
-import { fetchCocktailsFailure, fetchCocktailsRequest, fetchCocktailsSuccess } from './cocktails.actions';
+import {
+  fetchCocktailFailure,
+  fetchCocktailRequest,
+  fetchCocktailsFailure,
+  fetchCocktailsRequest,
+  fetchCocktailsSuccess, fetchCocktailSuccess
+} from './cocktails.actions';
 import { map, mergeMap } from 'rxjs';
 
 @Injectable()
@@ -21,4 +27,11 @@ export class CocktailsEffects {
     )),
   ));
 
+  fetchCocktail = createEffect(() => this.actions.pipe(
+    ofType(fetchCocktailRequest),
+    mergeMap(({id}) => this.cocktailsService.fetchCocktail(id).pipe(
+      map(item => fetchCocktailSuccess({item})),
+      this.helpers.catchServerError(fetchCocktailFailure),
+    )),
+  ));
 }

@@ -1,28 +1,27 @@
-<mat-card>
-  <mat-card-content>
-    <div fxLayout="row" fxLayoutGap="16px">
-      <img [src]="'https://static.onecms.io/wp-content/uploads/sites/43/2019/03/541915820Earl20Grey20Cocktail.jpg'"
-           [alt]="'Photo of ' " *ngIf="true"/>
+<mat-spinner *ngIf="loading | async; else cocktailArea"></mat-spinner>
 
-      <div>
-        <h1>Title</h1>
-        <h3>Ingredients:</h3>
-        <ul>
-          <li>Lorem ipsum dolor.</li>
-          <li>Doloribus placeat, voluptatem.</li>
-          <li>Autem, delectus, doloremque.</li>
-          <li>Fugiat reiciendis, repudiandae.</li>
-          <li>Ea, nobis tenetur.</li>
-        </ul>
+<ng-template #cocktailArea>
+  <mat-card *ngIf="cocktailData">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutGap="16px">
+        <img [src]="cocktailData.image | image"
+             [alt]="'Photo of ' + cocktailData.title"/>
+
+        <div>
+          <h1>{{ cocktailData.title }}</h1>
+          <h3>Ingredients:</h3>
+          <ul>
+            <li *ngFor="let c of cocktailData.ingredients; let i = index">
+              <span style="font-weight: 700">{{ cocktailData.ingredients[i].ingTitle }}</span>&nbsp;
+              <span>{{ cocktailData.ingredients[i].ingAmount }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <h3>Recipe</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid debitis exercitationem, in placeat
-      quasi qui temporibus! Fugit, illo, vel?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque
-      quibusdam ratione unde. Blanditiis commodi consectetur consequatur exercitationem facere obcaecati provident quod
-      repellat repellendus tenetur. Dicta dolor fuga hic soluta!</p>
-
-  </mat-card-content>
-</mat-card>
+      <h3>Recipe</h3>
+      <p>{{ cocktailData.recipe }}</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
 
