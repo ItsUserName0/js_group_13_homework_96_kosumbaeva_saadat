@@ -22,11 +22,11 @@
               <mat-form-field appearance="outline">
                 <input type="text" formControlName="ingTitle" placeholder="Ingredient name" matInput/>
                 <mat-error *ngIf="fieldHasError('ingTitle', 'required', i)">Enter ingredient title!</mat-error>
-              </mat-form-field>
+              </mat-form-field>&nbsp;
               <mat-form-field appearance="outline">
                 <input type="text" formControlName="ingAmount" placeholder="Name" matInput/>
                 <mat-error *ngIf="fieldHasError('ingAmount', 'required', i)">Enter ingredient amount!</mat-error>
-              </mat-form-field>
+              </mat-form-field>&nbsp;
               <button type="button" mat-raised-button color="warn" (click)="onIngRemove(i)">Delete
                 ingredient {{ i + 1 }}</button>
             </div>

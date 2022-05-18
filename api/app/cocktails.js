@@ -25,8 +25,7 @@ router.get('/', roles, async (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
       cocktails = await Cocktail.find({}, null, {sort: {'_id': -1}});
     } else {
-      const query = req.user ? {$or: [{is_published: true}, {user: req.user._id}]} : {is_published: true};
-      cocktails = await Cocktail.find(query, null, {sort: {'_id': -1}});
+      cocktails = await Cocktail.find({is_published: true}, null, {sort: {'_id': -1}});
     }
 
     return res.send(cocktails);
